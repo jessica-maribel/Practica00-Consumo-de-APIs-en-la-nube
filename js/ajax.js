@@ -79,27 +79,36 @@ function obtenerDatos(valor){
 
 function  searchMemes(){
     hideNotice();
-    var memesN = document.getElementById("search-memes-input").nodeValue;
-    if (!isEmpty(memesN,"Ingrese el id")){
-        getXMLRequest("https://superheroapi.com/api/3275332375923204/search/"+memes);
+    var memesN = document.getElementById("search-memes-input").value;
+    if (!isEmpty(memesN, "Ingrese el nombre de un Personaje de comics.")){
+        getXMLRequest("https://superheroapi.com/api/3275332375923204/search/"+memesN);
     }
 }
 
 //Imprimir
 
+function isEmpty(value, error_message){
+    if (value == ""){
+        showNotice(error_message, "bg-danger");
+        return true;
+    }
+    return false;
+}
+
 function print(){
     console.log(data);
     var tabla = document.getElementById("memes-tabla");
-    var data_head = `<thead class = "thead-dark">
+    var data_head = `<thead class = "thead-white">
     <tr>
         <th></th>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Imagen_URL</th>
-        <th>Ancho</th>
-        <th>Altura</th>
-        <th>Recuento_cajas</th>
-    </tr>   
+        <th style="width:200px">Nombre</th>
+        <th>Apariencia</th>
+        <th style="width:400px">Biografía</th>
+        <th>Conexiones</th>
+        <th>Estadíscas de poder</th>
+        <th>Trabajo</th>
+        <th>Id</th>
+    </tr>
     </thead>
     <tbody>`;
     var memes = "";
