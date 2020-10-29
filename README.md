@@ -5,12 +5,16 @@ Desarrollo de una aplicación web utilizando la API de la base de datos de pelí
 OBJETIVO ALCANZADO:
 • 	Conocer las arquitecturas y patrones arquitectónicos web para el diseño de aplicaciones web 
 • 	Interactuar con servicios web de plataformas en la nube 
+
 ACTIVIDADES DESARROLLADAS 
+
 1.	Identificar gráficamente la arquitectura y el patrón de diseño de la aplicación a desarrollar. 
 
 
 
+
 <img width="45%" src="img/ arquitectura.png"></img>
+
 
 
 
@@ -50,15 +54,24 @@ Experiencia de Usuario: Es importante tomar en consideración sobre los aspectos
 
 RESULTADO(S) OBTENIDO(S):
 
+
 •	Como resultado de la práctica se puede decir que con la ayuda de esta práctica se entiende la implementación de arquitecturas y patrones arquitectónicos de acuerdo con el desarrollo se comprende que tenemos un tipo de arquitectura modelo controlador y vista “MVC”, por lo que se implementó con plataformas de la nube.
 
 CONCLUSIONES:
+
+
 •	Es necesario saber sobre los patrones arquitectónicos ya que con estos nos permite que el desarrollo tenga una construcción, por lo cual se encargan de describir.
+
 •	Además de ello, es necesario aplicar buenas prácticas para el desarrollo ya que se debe conocer la implementación de experiencia de usuario esto nos facilita con los aspectos de interacción al usuario
+
 RECOMENDACIONES:
+
 •	Haber asistido a las secciones de clases
+
 •	Se recomienda revisar el contenido teórico de la asignatura
+
 •	Revisar la documentación sobre BootStrap para la realización de esta práctica.
+
 •	Tener conocimiento previo sobre el manejo de los css.
 
 
