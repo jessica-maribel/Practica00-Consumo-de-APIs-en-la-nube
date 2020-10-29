@@ -1,10 +1,10 @@
 //3275332375923204
 //const { isEmptyObject } = require("jquery");
 
-var current_page = [0, 0, 4];
+var paginacion = [0, 0, 4];
 var data;
-const DIV = 2;
-var max_pages;
+const DIV = 5;
+var maximo_paginas;
 //document.querySelector('#get_memes').addEventListener('click', function(){
   //  obtenerDatos('get_memes');
 //});
@@ -27,7 +27,12 @@ function showNotice(notice, notice_type){
 
 }
 
-function getXMLRequest(url){
+function  searchMemes(){
+
+    aviso();
+    var memesN = document.getElementById("search-memes-input").value;
+
+    let url=("https://superheroapi.com/api.php/3275332375923204/search/"+memesN);
 
     if (window.XMLHttpRequest) {
         api = new XMLHttpRequest();
@@ -41,15 +46,16 @@ function getXMLRequest(url){
         console.log("aqui");
         if ( this.readyState == 4  &&  this.status == 200  ) {
             data = api.response;
-            current_page = [0, 0, 4];
-            hiddeLoading();
+            paginacion= [0, 0, 5];
+            document.getElementById("loading").classList.add("e_hidden");
+            document.getElementById("background").classList.add("e_hidden");
             print(data);
             console.log("aqui");
         }
     };
     api.send();
-    showLoading();
-    
+    document.getElementById("loading").classList.remove("e_hidden");
+    document.getElementById("background").classList.remove("e_hidden");
 }
 /*
 function obtenerDatos(valor){
@@ -81,13 +87,6 @@ function obtenerDatos(valor){
 }
 */
 
-function  searchMemes(){
-    aviso();
-    var memesN = document.getElementById("search-memes-input").value;
-
-    getXMLRequest("https://superheroapi.com/api.php/3275332375923204/search/"+memesN);
-
-}
 
 //Imprimir
 
@@ -96,7 +95,7 @@ function  searchMemes(){
 function print(){
     console.log(data);
     var table = document.getElementById("memes-tabla");
-    var data_head = `<thead class = "thead-white">
+    var data_head = `<thead class = "thead-white" bg-light pt-4>
     <tr>
         
         <th>Apariencia del Heroe</th>
@@ -112,11 +111,11 @@ function print(){
     <tbody>`;
     var memes = "";
     if (data.response === "error"){
-        showNotice("No existe registros." , "bg-warning");
+        showNotice("No existe registros, vuelva a Intentar." , "bg-warning");
         clearNav();
     }else{
-        max_pages = Math.trunc((data.results.length - 1 )/DIV);
-        var min = current_page[0]*DIV;
+        maximo_paginas = Math.trunc((data.results.length - 1 )/DIV);
+        var min = paginacion[0]*DIV;
         var max = min + (DIV-1);
         if (max >= data.results.length){
             max = data.results.length-1;
@@ -131,23 +130,25 @@ function getMemes(data,min,max){
     var data_string = "";
     for(var i = min; i <= max; i++){
         data_string = data_string + "<tr>"
-            
+            // La apariencia del Heroe
             + " <td>" 
                 + "<strong>Género: </strong>" + data.results[i].appearance.gender + "<br>"
                 + "<strong>Raza: </strong>" + data.results[i].appearance.race + "<br>"
                 + "<strong>Altura: </strong>" + data.results[i].appearance.height['1'] + "<br>"
                 + "<strong>Peso: </strong>" + data.results[i].appearance.weight['0'] + "<br>" 
             + " </td>"
+            //Biografias del Heroe 
             + " <td>" 
-                + "<strong>Nombre Completo: </strong>" + data.results[i].biography['full-name'] + "<br>"
+                + "<strong>Nombres : </strong>" + data.results[i].biography['full-name'] + "<br>"
                 + "<strong>Primera aparición: </strong>" + data.results[i].biography['first-appearance'] + "<br>"
                 + "<strong>Lugar de nacimiento: </strong>" + data.results[i].biography['place-of-birth'] + "<br>"
-                
             + " </td>"
+            //Las conexiones del Heroe
             + " <td>" 
                 + "<strong>Grupo/Afiliación: </strong>" + data.results[i].connections['group-affiliation'] + "<br>"
                 
             + " </td>"
+            // Las habilidades de cada heroe
             + " <td>" 
                 + "<strong>Combate: </strong>" + data.results[i].powerstats['combat'] + "<br>"
                 + "<strong>Durabilidad: </strong>" + data.results[i].powerstats['durability'] + "<br>"
@@ -156,18 +157,22 @@ function getMemes(data,min,max){
                 + "<strong>Velocidad: </strong>" + data.results[i].powerstats['speed'] + "<br>"
                 + "<strong>Fuerza: </strong>" + data.results[i].powerstats['strength'] + "<br>"
             + " </td>"
+            // Las ocupaciones de cada Heroe
             + " <td>" 
                 
                 + "<strong>Ocupación: </strong>" + data.results[i].work['occupation'] + "<br>"
             + " </td>"
+            //El id que pertenece a cada heroe
             + " <td>" 
                 + data.results[i].id 
             + " </td>"
+            // La imagen para mejor visualizacion de cada heroe
             + " <td>"
             + "<a onclick='openModal(\"" + data.results[i].image.url + "\", \"" + data.results[i]['name'] + "\");' href='#'>"
                 + "<img class='hero-img' src='" + data.results[i].image.url + "' alt='" + data.results[i]['name'] + "'>"
             + `</a>`
         + " </td>" 
+        // Nombre del Personaje 
         + " <td>" + data.results[i]['name'] + " </td>"
             + "</tr>";
     }
@@ -178,44 +183,44 @@ function getMemes(data,min,max){
 function setNavPages(){
     var pages = document.getElementById('nav-pages-number');
     
-    var min = current_page[0];
+    var min = paginacion[0];
     var max;
     var min_aux;
-    for (var i = current_page[0]; i >= current_page[0] - 2; i--){
+    for (var i = paginacion[0]; i >= paginacion[0] - 2; i--){
         min = i;
         min_aux = i;
         if (i < 0){
             min = 0;
         }
     }
-    max = current_page[0] + 2;
+    max = paginacion[0] + 2;
     if(min_aux < 0){
         max  = max - min_aux;
     }
-    if (max >= max_pages){
-        max = max_pages;
+    if (max >= maximo_paginas){
+        max = maximo_paginas;
         if (max - 4 >= 0){
             min = max - 4;
         }else if(max - 3 >= 0){
             min = max - 3;
         }
     }
-    current_page[1] = min;
-    current_page[2] = max;
+    paginacion[1] = min;
+    paginacion[2] = max;
     var nav_html = "";
-    if (current_page[0] === 0){
+    if (paginacion[0] === 0){
         nav_html = '<a href="#" class="isDisabled bg-primary" onclick="return false;">&laquo;</a>';
     }else{
         nav_html = '<a href="#" class="bg-primary" onclick="setPageLeft()">&laquo;</a>';
     }
-    for (var i = current_page[1]; i <= current_page[2]; i++){
-        if (current_page[0] === i){
+    for (var i = paginacion[1]; i <= paginacion[2]; i++){
+        if (paginacion[0] === i){
             nav_html = nav_html + "<a class='bg-secondary' onclick='setPage(" + i + ")' href='#'>" + i + "</a>"
         }else{
             nav_html = nav_html + "<a class='bg-primary' onclick='setPage(" + i + ")' href='#'>" + i + "</a>"
         }
     }
-    if(current_page[0] === max_pages){
+    if(paginacion[0] === maximo_paginas){
         nav_html = nav_html + '<a href="#" class="isDisabled bg-primary" onclick="return false;">&raquo;</a>';
     }else{
         nav_html = nav_html + '<a href="#" class="bg-primary" onclick="setPageRight()">&raquo;</a>';
@@ -224,52 +229,34 @@ function setNavPages(){
 }
 
 function setPage(n){
-    current_page[0] = n;
+    paginacion[0] = n;
     print(data);
     return false;
 }
 
 function setPageLeft(){
-    var min = current_page[0] - 1;
+    var min = paginacion[0] - 1;
     if (min <= 0){
-        current_page[0] = 0;
+        paginacion[0] = 0;
     }else{
-        current_page[0] = min;
+        paginacion[0] = min;
     }
     print(data);
     return false;
 }
 
 function setPageRight(){
-    var max = current_page[0] + 1;
-    if(max >= max_pages){
-        current_page[0] = max_pages;
+    var max = paginacion[0] + 1;
+    if(max >= maximo_paginas){
+        paginacion[0] = maximo_paginas;
     }else{
-        current_page[0] = max;
+        paginacion[0] = max;
     }
     print(data);
     return false;
 }
 
-function showLoading(){
-    centerLoading();
-    document.getElementById("loading").classList.remove("e_hidden");
-    document.getElementById("background").classList.remove("e_hidden");
-}
 
-function hiddeLoading(){
-    document.getElementById("loading").classList.add("e_hidden");
-    document.getElementById("background").classList.add("e_hidden");
-}
-
-function centerLoading(){
-    var loading = document.getElementById("loading");
-    var w = window.innerWidth;
-    var h = window.innerHeight;
-
-    loading.style.left = ((w/2) - 40) + "px";
-    loading.style.top = ((h/2) - 40) + "px";
-}
 
 function openModal(img_src, alt_text){
     var modalImg = document.getElementById("modal-img");

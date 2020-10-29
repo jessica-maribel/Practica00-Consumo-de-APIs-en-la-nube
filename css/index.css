@@ -1,23 +1,57 @@
 .search-icon{
     background-image: url('imagenes/find.png');
     background-repeat: no-repeat;
-    background-size: 20px;
+    background-size: 50px;
     background-position: center;
+    background-color:#253147 ;
 }
 .my-search-form{
     max-width: 510px;
     margin: auto;
+    
+}
+section{
+    background-color:#253147 ;
 }
 
+article .bg-light{
+    background-color:#253147 ;
+}
+
+.logo {
+    float: left;
+    height:40%;
+    width: 30%;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 15px;
+}
+
+.titulo {
+    color: #b39144;
+    font-size: 45px;
+    font-weight: 70%;
+    background-color: lavender;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+}
+header{
+    
+}
 .my-article{
     margin: auto;
+    background-color: #ffb400;
+   
 }
 
 .notice_container{
     border-radius: 5px;
     margin: 10px;
+    background-color: #ffb400;
 }
-
 
 
 .notice_container input:hover{
@@ -81,6 +115,7 @@
     color: #253147;
     font-size: 1.5em;
     font-family: inherit;
+    background-color: #ffb400;
 }
 
 .isDisabled {
@@ -104,6 +139,7 @@
     filter: blur(5px);
 }
 
+
 .table-responsie{
     background-color: #4d858a;
     border: radius 2px; ;
@@ -118,13 +154,15 @@
   }
     .lds-ripple div {
         position: absolute;
-        border: 6px solid #737373;
+        border: 6px solid #ffb400;
         opacity: 1;
         border-radius: 50%;
         animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
     }
     .lds-ripple div:nth-child(2) {
         animation-delay: -0.5s;
+        
+        
     }
     @keyframes lds-ripple {
         0% {
@@ -140,6 +178,7 @@
         width: 72px;
         height: 72px;
         opacity: 0;
+        
         }
     }
 

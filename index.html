@@ -19,29 +19,30 @@
         </script> 
     </head>
     
-    <body onresize="centerLoading()">
+    <body >
         <div id= "background" class="background-blur e_hidden"></div>
             <div id="loading" class = "e-hidden lds-ripple"></div>    
                 <header>
                     <nav class = "navbar navbar-expand-lg navbar-light bg-light">
-                        <a class = "navbar-brand mb-0 h1" href = "index.html">Consumir Api de Heroes</a>
+                        <img class = "logo" src="Imagenes/LOGO-UPS.png" alt="logo">
+                        <a class = "titulo" href = "index.html">  Consumir Api de Heroes</a>
                     </nav>
                 </header>
                 <section class="container-fluid pt-3">
-                    <article class = "container-fluid bg-light pt-2">
+                    <article class = "container-fluid bg-light pt-4">
                         <form class = "main-form my-search-form " onsubmit="searchMeme();return false">
-                            <div id = "main_notice" class = "notice_container e-hidden">
-                                <div id = "notice" class = "div_notice"></div>
-                                <input type="button" onclick="aviso()">
-                        </div>
+                            
                         <div class = "clear-both"></div>
+                        
                         <div class= "row justify aling-items-center">
-                            <label for = "search-memes-input" class = "col-form-label col-12 col-sm-5">Buscar Heroe</label>
+                            
+                            <label for = "search-memes-input" class = "col-form-label col-12 col-sm-5">Realizar busqueda</label>
                             <input id = "search-memes-input" name = "search-memes-input" class = "form-control col-11 col-sm-8" type="search" 
                             placeholder="Buscar Heroes...." aria-label="Search">
-                            <input type = "button" class = "search-icon btn col-1 col-sm-1" onclick="searchMemes()"value="Buscar" >     
+                            <input type = "button" class = "search-icon btn col-2 col-sm-2" onclick="searchMemes()" value="Buscar" >     
                             
                         </div>
+                        
                         </form>
                         <br>
                         <!--
@@ -89,6 +90,10 @@
                         <img class = "modal-content" id = "modal-img">
                         <div id = "caption"></div>
                     </div>
+                    <div id = "main_notice" class = "notice_container e-hidden">
+                        <div id = "notice" class = "div_notice"></div>
+                        <input type="button" onclick="aviso()" value="Cerrar">
+                </div>
                 </section>
                   
                 
