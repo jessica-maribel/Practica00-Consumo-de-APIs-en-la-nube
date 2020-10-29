@@ -1,3 +1,4 @@
+//3275332375923204
 //const { isEmptyObject } = require("jquery");
 
 var current_page = [0, 0, 4];
@@ -14,7 +15,7 @@ var max_pages;
 });
 */
 
-function hideNotice(){
+function aviso(){
     document.getElementById("main_notice").classList.add("e_hidden");
 }
 
@@ -27,25 +28,28 @@ function showNotice(notice, notice_type){
 }
 
 function getXMLRequest(url){
-    if (window.XMLHttpRequest){
-        api = new XMLHttpRequest();
 
-    }else{
-        api = new ActiveXObject("Microsoft.XMLHTTP")
+    if (window.XMLHttpRequest) {
+        api = new XMLHttpRequest();
+    } else {
+        api = new ActiveXObject("Microsoft.XMLHTTP");
     }
-    api.open('GET',url,true);
-    api.responseText='json';
+    api.open('GET', url, true);
+    api.responseType = 'json';
+    console.log(url)
     api.onreadystatechange = function(){
-        if ( this.status == 200 &&this.readyState == 4 ){
+        console.log("aqui");
+        if ( this.readyState == 4  &&  this.status == 200  ) {
             data = api.response;
-            current_page = [0,0,4];
+            current_page = [0, 0, 4];
             hiddeLoading();
             print(data);
-            console.log(data);
+            console.log("aqui");
         }
     };
-    showLoading();
     api.send();
+    showLoading();
+    
 }
 /*
 function obtenerDatos(valor){
@@ -78,36 +82,31 @@ function obtenerDatos(valor){
 */
 
 function  searchMemes(){
-    hideNotice();
+    aviso();
     var memesN = document.getElementById("search-memes-input").value;
-    if (!isEmpty(memesN, "Ingrese el nombre de un Personaje de comics.")){
-        getXMLRequest("https://superheroapi.com/api/3275332375923204/search/"+memesN);
-    }
+
+    getXMLRequest("https://superheroapi.com/api.php/3275332375923204/search/"+memesN);
+
 }
 
 //Imprimir
 
-function isEmpty(value, error_message){
-    if (value == ""){
-        showNotice(error_message, "bg-danger");
-        return true;
-    }
-    return false;
-}
+
 
 function print(){
     console.log(data);
-    var tabla = document.getElementById("memes-tabla");
+    var table = document.getElementById("memes-tabla");
     var data_head = `<thead class = "thead-white">
     <tr>
-        <th></th>
-        <th style="width:200px">Nombre</th>
-        <th>Apariencia</th>
-        <th style="width:400px">Biografía</th>
+        
+        <th>Apariencia del Heroe</th>
+        <th>Biografía</th>
         <th>Conexiones</th>
-        <th>Estadíscas de poder</th>
-        <th>Trabajo</th>
-        <th>Id</th>
+        <th>Poder</th>
+        <th>Trabajos</th>
+        <th>ID</th>
+        <th>Imagen</th>
+        <th>Nombres</th>
     </tr>
     </thead>
     <tbody>`;
@@ -122,8 +121,8 @@ function print(){
         if (max >= data.results.length){
             max = data.results.length-1;
         }
-        setNavPages();
         memes = getMemes(data,min,max);
+        setNavPages();
     }
     table.innerHTML = data_head + memes + "</tbody>";
 }
@@ -132,12 +131,7 @@ function getMemes(data,min,max){
     var data_string = "";
     for(var i = min; i <= max; i++){
         data_string = data_string + "<tr>"
-            + " <td>"
-                + "<a onclick='openModal(\"" + data.results[i].image.url + "\", \"" + data.results[i]['name'] + "\");' href='#'>"
-                    + "<img class='hero-img' src='" + data.results[i].image.url + "' alt='" + data.results[i]['name'] + "'>"
-                + `</a>`
-            + " </td>" 
-            + " <td>" + data.results[i]['name'] + " </td>" 
+            
             + " <td>" 
                 + "<strong>Género: </strong>" + data.results[i].appearance.gender + "<br>"
                 + "<strong>Raza: </strong>" + data.results[i].appearance.race + "<br>"
@@ -148,7 +142,7 @@ function getMemes(data,min,max){
                 + "<strong>Nombre Completo: </strong>" + data.results[i].biography['full-name'] + "<br>"
                 + "<strong>Primera aparición: </strong>" + data.results[i].biography['first-appearance'] + "<br>"
                 + "<strong>Lugar de nacimiento: </strong>" + data.results[i].biography['place-of-birth'] + "<br>"
-                + "<strong>Publicador: </strong>" + data.results[i].biography['publisher'] + "<br>"
+                
             + " </td>"
             + " <td>" 
                 + "<strong>Grupo/Afiliación: </strong>" + data.results[i].connections['group-affiliation'] + "<br>"
@@ -163,13 +157,18 @@ function getMemes(data,min,max){
                 + "<strong>Fuerza: </strong>" + data.results[i].powerstats['strength'] + "<br>"
             + " </td>"
             + " <td>" 
-                + "<strong>Base: </strong>" + data.results[i].work['base'] + "<br>"
+                
                 + "<strong>Ocupación: </strong>" + data.results[i].work['occupation'] + "<br>"
             + " </td>"
             + " <td>" 
                 + data.results[i].id 
             + " </td>"
-            
+            + " <td>"
+            + "<a onclick='openModal(\"" + data.results[i].image.url + "\", \"" + data.results[i]['name'] + "\");' href='#'>"
+                + "<img class='hero-img' src='" + data.results[i].image.url + "' alt='" + data.results[i]['name'] + "'>"
+            + `</a>`
+        + " </td>" 
+        + " <td>" + data.results[i]['name'] + " </td>"
             + "</tr>";
     }
     return data_string;
@@ -177,7 +176,7 @@ function getMemes(data,min,max){
 }
 
 function setNavPages(){
-    var pages = document.getElementById('nav-pages-numbers');
+    var pages = document.getElementById('nav-pages-number');
     
     var min = current_page[0];
     var max;

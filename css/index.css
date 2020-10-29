@@ -1,7 +1,7 @@
-search-icon{
-    background-image: url('../imagenes/find.jfif');
+.search-icon{
+    background-image: url('imagenes/find.png');
     background-repeat: no-repeat;
-    background-size: 15px;
+    background-size: 20px;
     background-position: center;
 }
 .my-search-form{
@@ -21,7 +21,7 @@ search-icon{
 
 
 .notice_container input:hover{
-    background-color: rgba(255, 0, 0, 0.5);
+    background-color: yellow;
     opacity: 0.8;
 }
 
@@ -30,7 +30,7 @@ search-icon{
     width: 85%;
     text-align: center;
     padding: 5px 10px;
-    color: #fff;
+    color: #737373;
 }
 
 .hero-img{
@@ -56,7 +56,7 @@ search-icon{
 
 .e_notice_sucess{
     background-color: #62A693;
-    color: #fff;
+    color: green;
 }
 
 .e_notice_warning{
@@ -66,24 +66,19 @@ search-icon{
 
 .e_notice_error{
     background-color: rgb(255, 71, 71);
-    color: #fff;
+    color: #737373;
 }
 
 .clear-both{
     clear: both;;
 }
 
-.nav-pages{
-    /* display: inline-flex; */
-    /* text-align: center; */
-}
 .nav-pages a{
     text-decoration: none;
-    margin: 1px;
-    padding: 0px 10px;
-    /* background-color: #62A693; */
+    margin: 2px;
+    padding: 0px 15px;
     color: currentColor;
-    color: #fff;
+    color: #253147;
     font-size: 1.5em;
     font-family: inherit;
 }
@@ -104,11 +99,15 @@ search-icon{
     left:0;
     width: 100%;
     height: 100%;
-    background-color: #33333360;
+    background-color: #737373;
     transition: all 1s;
     filter: blur(5px);
 }
 
+.table-responsie{
+    background-color: #4d858a;
+    border: radius 2px; ;
+}
 .lds-ripple {
     display: inline-block;
     position: absolute;
@@ -119,7 +118,7 @@ search-icon{
   }
     .lds-ripple div {
         position: absolute;
-        border: 6px solid #fff;
+        border: 6px solid #737373;
         opacity: 1;
         border-radius: 50%;
         animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
@@ -149,21 +148,21 @@ search-icon{
     display: none; 
     position: fixed; 
     z-index: 1;
-    padding-top: 100px;
+    padding-top: 150px;
     left: 0;
     top: 0;
     width: 100%; 
     height: 100%; 
     overflow: auto; 
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.9);
+    background-color: #0b5c63; 
+    background-color: blanchedalmond;
 }
 
 .modal-content {
     margin: auto;
     display: block;
-    width: 60%;
-    max-width: 500px;
+    width: 80%;
+    max-width: 700px;
 }
 
 #caption {
@@ -172,7 +171,7 @@ search-icon{
     width: 80%;
     max-width: 700px;
     text-align: center;
-    color: #ccc;
+    color: #253147;
     padding: 10px 0;
     height: 150px;
 }
@@ -180,7 +179,7 @@ search-icon{
 /* Add Animation - Zoom in the Modal */
 .modal-content, #caption {
     animation-name: zoom;
-    animation-duration: 0.3s;
+    animation-duration: 0.5s;
 }
 
 @keyframes zoom {
@@ -193,22 +192,6 @@ search-icon{
     to {transform:scale(0)}
 }
 
-/* The Close Button */
-.close {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: #f1f1f1;
-    font-size: 40px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.close:hover, .close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-}
 
 /* 100% Image Width on Smaller Screens */
 @media only screen and (max-width: 700px){

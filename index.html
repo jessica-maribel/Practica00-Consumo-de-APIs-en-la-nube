@@ -12,7 +12,7 @@
         
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/index.css">
-        <title>Buscar Memes</title>
+        <title>Consumir Api</title>
         
         <script src="js/ajax.js">
                    
@@ -20,11 +20,11 @@
     </head>
     
     <body onresize="centerLoading()">
-        <div id= "background"class="background-blur e_hidden"></div>
+        <div id= "background" class="background-blur e_hidden"></div>
             <div id="loading" class = "e-hidden lds-ripple"></div>    
                 <header>
                     <nav class = "navbar navbar-expand-lg navbar-light bg-light">
-                        <a class = "navbar-brand mb-0 h1" href = "index.html">Buscar Memes</a>
+                        <a class = "navbar-brand mb-0 h1" href = "index.html">Consumir Api de Heroes</a>
                     </nav>
                 </header>
                 <section class="container-fluid pt-3">
@@ -32,14 +32,15 @@
                         <form class = "main-form my-search-form " onsubmit="searchMeme();return false">
                             <div id = "main_notice" class = "notice_container e-hidden">
                                 <div id = "notice" class = "div_notice"></div>
-                                <input type="button" onclick="hideNotice()">
+                                <input type="button" onclick="aviso()">
                         </div>
                         <div class = "clear-both"></div>
                         <div class= "row justify aling-items-center">
-                            <label for = "search-memes-input" class = "col-form-label col-12 col-sm-8">Buscar Meme</label>
+                            <label for = "search-memes-input" class = "col-form-label col-12 col-sm-5">Buscar Heroe</label>
                             <input id = "search-memes-input" name = "search-memes-input" class = "form-control col-11 col-sm-8" type="search" 
-                            placeholder="Buscar ...." aria-label="Search">
-                            <input type = "button" class = "search-icon btn col-1 col-sm-1" onclick="searchMemes()">      
+                            placeholder="Buscar Heroes...." aria-label="Search">
+                            <input type = "button" class = "search-icon btn col-1 col-sm-1" onclick="searchMemes()"value="Buscar" >     
+                            
                         </div>
                         </form>
                         <br>
@@ -59,16 +60,18 @@
                         <div class="row justify-content-center" >
                         <div class = "table-responsie">
                             <table id = "memes-tabla" class = "table table-striped table-bordered">
-                                <thead class = "thead-dark">
+                                <thead class = "thead-white">
                                     <tr>
-                                        <th></th>
-                                <th style="width:200px">Nombre</th>
-                                <th>Apariencia</th>
-                                <th style="width:400px">Biografía</th>
-                                <th>Conexiones</th>
-                                <th>Estadíscas de poder</th>
-                                <th>Trabajo</th>
-                                <th>Id</th>
+                                        
+                                        <th>Apariencia del Heroe</th>
+                                        <th>Biografía</th>
+                                        <th>Conexiones</th>
+                                        <th>Poder</th>
+                                        <th>Trabajos</th>
+                                        <th>ID</th>
+                                        <th>Imagen</th>
+                                        <th>Nombres</th>
+                                
                                     </tr>
                                 </thead>
                             </table>
