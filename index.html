@@ -2,19 +2,84 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <!--<meta name = "viewport" content= --> 
+        <meta name = "viewport" content="width=device-width, initial-scale=1.0" > 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <script src="js/jquery-3.5.1.min.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <title>Buscar Memes</title>
+        
+        <script src="js/ajax.js">
+                   
+        </script> 
     </head>
-    <body>
-        <div class = "cont">
-            <div class = "section">
-                <button class = "btnB" onclick="obtenerDatos('get_memes')" id = "get_memes">Memes </button>
+    
+    <body onresize="centerLoading()">
+        <div id= "background"class="background-blur e_hidden"></div>
+            <div id="loading" class = "e-hidden lds-ripple"></div>    
+                <header>
+                    <nav class = "navq">
+                        <a class = navq href = "index.html">Buscar Memes</a>
+                    </nav>
+                </header>
+                <section class="container pt-1">
+                    <article class = "container bg-light">
+                        <form class = "main" onsubmit="searchMeme();return false">
+                            <div id = "main_notice" class = "notice_container e-hidden">
+                                <div id = "notice" class = "div_notice"></div>
+                                <input type="button" onclick="hideNotice()">
+                        </div>
+                        <div class = "clear-both"></div>
+                        <div class= "row justify">
+                            <label for = "search-memes-input" class = "col-form-label col-12 col-sm-8">Buscar Meme</label>
+                            <input id = "search-memes-input" name = "search-memes-input" class = "form-control col-11 col-sm-8" type="search" 
+                            placeholder="Buscar ...." aria-label="Search">
+                            <input type = "button" class = "search-icon btn col-1 col-sm-1" onclick="searchMemes()">      
+                        </div>
+                        </form>
+                        <br>
+                        <!--
+                        <div class = "container">
+                            <div class = "section">
+                                <button class = "btnB" onclick="obtenerDatos('get_memes')" id = "get_memes">Memes </button>
+    
+                                <button class = "btnU" id = "caption_image">Imagene </button>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <ul id = "resultado"></ul>
+                        </div>
+                        -->
+                        <br>
 
-                <button class = "btnU" id = "caption_image">Imagene </button>
-            </div>
-        </div>
-        <div class="section">
-            <ul id = "resultado"></ul>
-        </div>
-        <script src="ajax.js"></script>
+                        <div class = "table-responsie">
+                            <table id = "memes-tabla" class = "table table-striped table-bordered">
+                                <thead class = "thead-dark">
+                                    <tr>
+                                        <th></th>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Imagen_URL</th>
+                                        <th>Ancho</th>
+                                        <th>Altura</th>
+                                        <th>Recuento_cajas</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="container">
+                            <nav class = "nav-pages row justify-content-center">
+                                <div id = "nav-pages-number"></div>
+                            </nav>
+                        </div>
+                    </article> 
+
+                    <div id = "myModal" onclick="closeModal()" class="modal">
+                        <span class = "close" onclick="closeModal()">&times;</span>
+                        <img class = "modal-content" id = "modal-img">
+                        <div id = "caption"></div>
+                    </div>
+                </section>
+                  
+                
     </body>
 </html>
