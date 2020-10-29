@@ -3,6 +3,8 @@
 
 var paginacion = [0, 0, 4];
 var data;
+
+//Divisiones de paginas
 const DIV = 5;
 var maximo_paginas;
 //document.querySelector('#get_memes').addEventListener('click', function(){
